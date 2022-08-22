@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissor</title>
+  </head>
+  <body>
+    <script>
+      let playerScore = 0;
+      let compScore = 0;
+
+      function getComputerChoice() {
+        const randomNum = Math.floor(Math.random() * 3) + 1;
+        let computersPick = "";
+        if (randomNum === 1) {
+          computersPick = "Rock";
+        } else if (randomNum === 2) {
+          computersPick = "Paper";
+        } else if (randomNum === 3) {
+          computersPick = "Scissors";
+        }
+
+        return computersPick;
+      }
+
+      function playRound(playerSelection, computerSelection) {
+        let playerPick = playerSelection.toLowerCase();
+        let compPick = computerSelection.toLowerCase();
+
+        if (playerPick === "rock" && compPick === "scissors") {
+          playerScore += 1;
+          return "You Win! Rock beats Scissors";
+        } else if (playerPick === "paper" && compPick === "rock") {
+          playerScore += 1;
+          return "You Win! Paper beats Rock";
+        } else if (playerPick === "scissors" && compPick === "paper") {
+          playerScore += 1;
+          return "You Win! Scissors beats Paper";
+        } else if (playerPick === "rock" && compPick === "paper") {
+          compScore += 1;
+          return "You Lose! Paper beats Rock";
+        } else if (playerPick === "paper" && compPick === "scissors") {
+          compScore += 1;
+          return "You Lose! Scissors beats Paper";
+        } else if (playerPick === "scissors" && compPick === "rock") {
+          compScore += 1;
+          return "You Lose! Rock beats Scissors";
+        } else if (playerPick === compPick) {
+          return `It's a tie, both players chose ${playerPick}!`;
+        } else {
+          console.log(playerPick);
+          console.log(compPick);
+          return "Invalid input";
+        }
+      }
+
+      //   console.log(playRound("ROcK", getComputerChoice()));
+      //   console.log(`Player: ${playerScore}. Computer: ${compScore}.`);
+
+      function game() {
+        for (let i = 0; i < 5; i++) {
+          console.log(playRound(prompt(), getComputerChoice()));
+        }
+        if (playerScore > compScore) {
+          return `You Win! Player: ${playerScore}. Computer: ${compScore}.`;
+        } else if (compScore > playerScore) {
+          `You Lose! Player: ${playerScore}. Computer: ${compScore}.`;
+        } else {
+          return `It's a Tie! Player: ${playerScore}. Computer: ${compScore}.`;
+        }
+      }
+
+      console.log(game());
+    </script>
+  </body>
+</html>
